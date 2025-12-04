@@ -8,8 +8,8 @@
     </head>
     <body>
         <h2>Animation d’un chemin avec virages (SVG)</h2>
-
-        <svg viewBox="0 0 400 200">
+        <img class="shema_complique" src="rogner_elec.png">
+        <svg viewBox="0 0 400 200" src="rogner_elec.png">
 
             <!-- Chemin de fond (statique) avec virages -->
             <!-- A -> virage 1 -> virage 2 -> C -->
@@ -20,7 +20,17 @@
                     L 200 80
                     L 300 80
                     L 350 80
-                    L 350 100" />
+                    L 350 100
+                    L 10 10" />
+                <path id="base-div-1"
+                class="base-path"
+                d="M 50 150
+                    L 150 150
+                    L 200 80
+                    L 300 80
+                    L 350 80
+                    L 350 100
+                    L 10 10" />
 
             <!-- Chemin animé, identique au fond -->
             <path id="anim"
@@ -30,7 +40,17 @@
                     L 200 80
                     L 300 80
                     L 350 80
-                    L 350 100" />
+                    L 350 100
+                    L 10 10" />
+            <!-- <path id="anim"
+                class="anim-path"
+                d="M 50 150
+                    L 150 150
+                    L 200 80
+                    L 300 80
+                    L 350 80
+                    L 350 100
+                    L 10 10" />         -->
 
             <!-- Nœuds -->
             <circle id="A" cx="50" cy="150" r="7" class="node"/>
