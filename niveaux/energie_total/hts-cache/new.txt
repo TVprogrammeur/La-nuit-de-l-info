@@ -1,0 +1,3 @@
+date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
+00:29:15	286/286	---M-Z	200	added ('OK')	text/plain	date:Thu,%2004%20Dec%202025%2020:52:31%20GMT	https://www.totalenergies.fr/robots.txt		(from )
+00:29:16	180291/180291	---M-Z	200	added ('OK')	text/html	date:Thu,%2004%20Dec%202025%2020:20:33%20GMT	https://www.totalenergies.fr/	./clone_total_final/www.totalenergies.fr/index.html	(from )
