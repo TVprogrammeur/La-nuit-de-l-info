@@ -40,7 +40,7 @@ async function start() {
     highlightNode(A);
 
     // Animation du chemin complet (avec virages)
-    await animatePath(path, 2000);
+    await animatePath(path, 3000);
 
     // Mise en évidence des nœuds dans l’ordre
     highlightNode(B);

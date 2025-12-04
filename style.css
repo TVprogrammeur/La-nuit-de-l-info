@@ -1,10 +1,3 @@
-img {
-    background-image: url("rogner_elec.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
 
 
 
@@ -13,7 +6,10 @@ body {
 }
 
 svg {
-    background: #1900ff00;
+    background-image: url("rogner_elec.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border: 1px solid #000000;
 }
 
