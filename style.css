@@ -1,20 +1,42 @@
-/* Style du bloc d'introduction */
-.intro-container {
-  background-color: #f40b0b;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+/* On enlève les marges par défaut */
+* {
+  box-sizing: border-box;
 }
 
-/* Style du bloc des îles */
-.iles-container {
-  background-color: #0004ff;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-/* Style général des paragraphes */
-.Intro, .Iles {
+body {
+  margin: 0;
   font-family: Arial, sans-serif;
+}
+
+/* Premier bloc en haut */
+.intro-container {
+  padding: 20px;
+  background-color: #f2f2f2;
   line-height: 1.4;
+}
+
+/* Deuxième bloc beaucoup plus bas dans la page */
+.iles-container {
+  padding: 20px;
+  background-color: #e0ffe5;
+  border-radius: 8px;
+  line-height: 1.4;
+  text-align: center;
+
+  /* 💡 TRÈS IMPORTANT : pousse ce bloc très bas
+     150vh = 1,5 fois la hauteur de l'écran */
+  margin-top: 150vh;
+}
+
+/* Invisible au début */
+.hidden {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Visible après le scroll */
+.visible {
+  opacity: 1;
+  transform: translateY(0);
 }

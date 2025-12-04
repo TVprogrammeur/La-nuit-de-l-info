@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Scroll + apparition</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -11,15 +11,48 @@
 
   <div class="intro-container">
     <p class="Intro">
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia laboriosam repellendus nemo, fuga dolorem ipsam iusto inventore vel ullam debitis nostrum laudantium, necessitatibus et! Unde quia incidunt aliquid est repellendus?
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia laboriosam repellendus nemo,
+      fuga dolorem ipsam iusto inventore vel ullam debitis nostrum laudantium, necessitatibus et!
+      Unde quia incidunt aliquid est repellendus?
     </p>
   </div>
 
-  <div class="iles-container">
-    <p class="Iles">
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis tenetur dignissimos tempora voluptates rem ipsa quas distinctio vitae voluptatum illum, tempore vero recusandae voluptate possimus veniam aliquam consequuntur et temporibus!
-    </p>
+ <!-- Trigger/Open the Modal -->
+<button onclick="document.getElementById('id01').style.display='block'"
+class="w3-button">Open Modal</button>
+
+<!-- The Modal -->
+<div id="id01" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('id01').style.display='none'"
+      class="w3-button w3-display-topright">&times;</span>
+      <p>Some text in the Modal..</p>
+      <p>Some text in the Modal..</p>
+    </div>
+  </div>
+</div> 
+
+
+  <div class="img-wrapper">
+    <img src="images.jpg" alt="Mon image">
+
+    <!-- Zone 1 -->
+    <a href="https://google.com" class="zone"
+       style="top: 10px; left: 20px; width: 100px; height: 80px;"></a>
+
+    <!-- Zone 2 -->
+    <a href="https://openai.com" class="zone"
+       style="top: 120px; left: 150px; width: 120px; height: 90px;"></a>
+
+    <!-- Zone 3 -->
+    <a href="https://github.com" class="zone"
+       style="top: 50px; right: 10px; width: 80px; height: 60px;"></a>
+
   </div>
 
+  <script src="script.js"></script>
 </body>
 </html>
+
+
