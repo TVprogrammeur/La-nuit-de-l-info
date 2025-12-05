@@ -6,7 +6,7 @@ const hitSound = new Audio('toucher-explosion_point.mp3');     // son quand on t
 const missSound = new Audio('rater.mp3');   // son quand on rate
 
 let gameStarted = false;
-let timeLeft = 60;
+let timeLeft = 30;
 let timerInterval = null;
 
 // Créer la popup des règles
@@ -27,7 +27,7 @@ rulesPopup.style.cssText = `
 rulesPopup.innerHTML = `
     <h2>RÈGLES DU JEU</h2>
     <p>- Tir avec le clic gauche de la souris sur les éléments de la page</p>
-    <p>- Tu as 60s pour faire le meilleur score</p>
+    <p>- Tu as 30s pour faire le meilleur score</p>
     <p><strong>Clique n'importe où pour commencer !</strong></p>
 `;
 document.body.appendChild(rulesPopup);
@@ -68,7 +68,40 @@ function startTimer() {
 function endGame() {
     clearInterval(timerInterval);
     gameStarted = false;
-    alert(`⏰ Temps écoulé !`);
+    
+    // Créer le bouton Next
+    const nextButton = document.createElement('button');
+    nextButton.textContent = 'NEXT ➔';
+    nextButton.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #4CAF50;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        padding: 20px 40px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        z-index: 10000;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    `;
+    
+    nextButton.addEventListener('mouseenter', () => {
+        nextButton.style.background = '#45a049';
+    });
+    
+    nextButton.addEventListener('mouseleave', () => {
+        nextButton.style.background = '#4CAF50';
+    });
+    
+    nextButton.addEventListener('click', () => {
+        window.location.href = '../sheesh/index.html'; // Remplacez par l'URL de votre page
+    });
+    
+    document.body.appendChild(nextButton);
 }
 localStorage.removeItem("gameData");
 
