@@ -4483,10 +4483,45 @@ Voir toute notre FAQ
             </div>
         </div>
 
-    
+	<div class="player"></div>
+
+    <script src="game.js"></script>
 
 </footer>
 
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    position: relative;
+    height: 100vh;
+    padding: 20px;
+  }
+
+  .player {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    bottom: 20px;
+    left: 48%;
+    transform: translateX(-50%);
+    background-image: url('gun.png'); /* mettre ton image player.png ici */
+    background-size: cover;
+    background-position: center;
+    z-index: 1000;
+  }
+
+  .ball {
+    position: absolute;
+    width: 70px;
+    height: 80px;
+    background-image: url('laser.png'); /* mettre ton image balle.png ici */
+    background-size: cover;
+    border-radius: 50%;
+    z-index: 1000;
+  }
+</style>
 
 </div>
 
