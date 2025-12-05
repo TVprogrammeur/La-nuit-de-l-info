@@ -70,6 +70,9 @@ function endGame() {
     gameStarted = false;
     alert(`⏰ Temps écoulé !`);
 }
+localStorage.removeItem("gameData");
+
+let gameData = { score: 0 };
 
 // Fonction pour tirer une balle vers une position ou un élément
 function shoot(targetX, targetY, targetElement = null) {
@@ -93,7 +96,7 @@ function shoot(targetX, targetY, targetElement = null) {
     const angle = 90 + Math.atan2(dy, dx) * 180 / Math.PI; // angle en degrés
     ball.style.transform = `rotate(${angle}deg)`;
 
-    const speed = 10;
+    const speed = 20;
     let step = 0;
 
     function animate() {
@@ -104,6 +107,11 @@ function shoot(targetX, targetY, targetElement = null) {
                 targetElement.remove(); // supprime la cible
                 hitSound.currentTime = 0;
                 hitSound.play(); // jouer son de touche
+                // Score +1
+                gameData.score += 10;
+                saveGame();
+
+                console.log("Score :", gameData.score);
             } else {
                 missSound.currentTime = 0;
                 missSound.play(); // jouer son de raté
@@ -117,6 +125,10 @@ function shoot(targetX, targetY, targetElement = null) {
     }
 
     animate();
+}
+
+function saveGame() {
+    localStorage.setItem("gameData", JSON.stringify(gameData));
 }
 
 // Événement click sur toute la page
@@ -135,6 +147,9 @@ document.addEventListener('click', (e) => {
     let targetElement = null;
     
     if (target !== document.body && target !== player && target !== timerDisplay) {
+
+    // Vérifie si le clic est sur une cible
+    if (target !== document.body && target !== document.footer && target !== player) {
         targetElement = target;
     }
     
@@ -142,4 +157,4 @@ document.addEventListener('click', (e) => {
     const targetY = e.clientY - 10 + window.scrollY;
     
     shoot(targetX, targetY, targetElement);
-});
+}});

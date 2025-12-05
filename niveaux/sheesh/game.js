@@ -70,6 +70,9 @@ function endGame() {
     gameStarted = false;
     alert(`⏰ Temps écoulé !`);
 }
+localStorage.removeItem("gameData");
+
+let gameData = { score: 0 };
 
 // Fonction pour tirer une balle vers une position ou un élément
 function shoot(targetX, targetY, targetElement = null) {
@@ -104,6 +107,11 @@ function shoot(targetX, targetY, targetElement = null) {
                 targetElement.remove(); // supprime la cible
                 hitSound.currentTime = 0;
                 hitSound.play(); // jouer son de touche
+                // Score +1
+                gameData.score += 10;
+                saveGame();
+
+                console.log("Score :", gameData.score);
             } else {
                 missSound.currentTime = 0;
                 missSound.play(); // jouer son de raté
@@ -117,6 +125,10 @@ function shoot(targetX, targetY, targetElement = null) {
     }
 
     animate();
+}
+
+function saveGame() {
+    localStorage.setItem("gameData", JSON.stringify(gameData));
 }
 
 // Événement click sur toute la page
