@@ -1,0 +1,31 @@
+[
+  {
+    "id": "attempt_1764904277919",
+    "ip": "::ffff:127.0.0.1",
+    "personName": "s",
+    "personBio": "s",
+    "islandName": "Île des Passeurs & Pédagogues",
+    "mainIslandId": "education_community",
+    "topSkills": [
+      {
+        "id": "animate_workshops",
+        "label": "Animer / co-animer un atelier ou une séance de sensibilisation",
+        "level": 5,
+        "impactOnMainIsland": 4
+      },
+      {
+        "id": "explain_to_non_tech",
+        "label": "Expliquer des notions techniques à des publics non techniques",
+        "level": 5,
+        "impactOnMainIsland": 4
+      },
+      {
+        "id": "project_planning",
+        "label": "Planifier un projet (objectifs, étapes, responsabilités, planning)",
+        "level": 5,
+        "impactOnMainIsland": 4
+      }
+    ],
+    "createdAt": "2025-12-05T03:11:17.919Z"
+  }
+]

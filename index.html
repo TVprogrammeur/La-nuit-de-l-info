@@ -1,58 +1,215 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scroll + apparition</title>
-
-  <link rel="stylesheet" href="style.css">
-</head>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
 <body>
 
-  <div class="intro-container">
-    <p class="Intro">
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia laboriosam repellendus nemo,
-      fuga dolorem ipsam iusto inventore vel ullam debitis nostrum laudantium, necessitatibus et!
-      Unde quia incidunt aliquid est repellendus?
-    </p>
-  </div>
+<div class="w3-container">
+  <h2><strong style="color:pink">12</strong>Nuit de l'info<strong style="color:pink">12</strong></h2>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam error dolores, maiores, laudantium corrupti omnis accusamus nobis doloribus tempore, itaque placeat neque non quos velit impedit consequatur accusantium excepturi fugiat.</p>
 
- <!-- Trigger/Open the Modal -->
-<button onclick="document.getElementById('id01').style.display='block'"
-class="w3-button">Open Modal</button>
+  <img src="mapLinux.png"
+       class="w3-image w3-hover-opacity"
+       onclick="document.getElementById('id_mapLinux').style.display='block'" width="500">
 
-<!-- The Modal -->
-<div id="id01" class="w3-modal">
-  <div class="w3-modal-content">
+  <img src="mapDechets.png"
+       class="w3-image w3-hover-opacity"
+       onclick="document.getElementById('id_mapDechets').style.display='block'" width="500">
+
+  <img src="mapNuclaire.png"
+       class="w3-image w3-hover-opacity"
+       onclick="document.getElementById('id_mapNuclaire').style.display='block'" width="500">
+
+  <img src="mapPedagogue.png"
+       class="w3-image w3-hover-opacity"
+       onclick="document.getElementById('id_mapPedagogue').style.display='block'" width="500">
+
+  <img src="lazer.png"
+       class="w3-image w3-hover-opacity"
+       onclick="window.open('https://example.com', '_blank')" width="500">
+</div>
+
+
+<!-- MODAL LINUX -->
+<div id="id_mapLinux" class="w3-modal">
+  <div class="w3-modal-content w3-animate-top w3-card-4">
+    <header class="w3-container" style="background-color: #FFC63C;">
+      <span onclick="document.getElementById('id_mapLinux').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+      <h2>Logiciels libres & autonomie</h2>
+    </header>
     <div class="w3-container">
-      <span onclick="document.getElementById('id01').style.display='none'"
-      class="w3-button w3-display-topright">&times;</span>
-      <p>Some text in the Modal..</p>
-      <p>Some text in the Modal..</p>
+      <p id="linuxCount"></p>
+      <div id="linuxTab"></div>
     </div>
+    <footer class="w3-container" style="background-color: #FFC63C;">
+      <p>Modal Footer</p>
+    </footer>
   </div>
-</div> 
+</div>
 
 
-  <div class="img-wrapper">
-    <img src="images.jpg" alt="Mon image">
-
-    <!-- Zone 1 -->
-    <a href="https://google.com" class="zone"
-       style="top: 10px; left: 20px; width: 100px; height: 80px;"></a>
-
-    <!-- Zone 2 -->
-    <a href="https://openai.com" class="zone"
-       style="top: 120px; left: 150px; width: 120px; height: 90px;"></a>
-
-    <!-- Zone 3 -->
-    <a href="https://github.com" class="zone"
-       style="top: 50px; right: 10px; width: 80px; height: 60px;"></a>
-
+<!-- MODAL DECHETS -->
+<div id="id_mapDechets" class="w3-modal">
+  <div class="w3-modal-content w3-animate-top w3-card-4">
+    <header class="w3-container" style="background-color: #FFC63C;"> 
+      <span onclick="document.getElementById('id_mapDechets').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+      <h2>Réemploi matériel / Déchets</h2>
+    </header>
+    <div class="w3-container">
+      <p id="dechetsCount"></p>
+      <div id="dechetsTab"></div>
+    </div>
+    <footer class="w3-container" style="background-color: #FFC63C;">
+      <p>Modal Footer</p>
+    </footer>
   </div>
+</div>
 
-  <script src="script.js"></script>
+
+<!-- MODAL NUCLEAIRE / SOBRIÉTÉ NUMÉRIQUE -->
+<div id="id_mapNuclaire" class="w3-modal">
+  <div class="w3-modal-content w3-animate-top w3-card-4">
+    <header class="w3-container" style="background-color: #FFC63C;"> 
+      <span onclick="document.getElementById('id_mapNuclaire').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+      <h2>Sobriété numérique</h2>
+    </header>
+    <div class="w3-container">
+      <p id="nucleaireCount"></p>
+      <div id="nucleaireTab"></div>
+    </div>
+    <footer class="w3-container" style="background-color: #FFC63C;">
+      <p>Modal Footer</p>
+    </footer>
+  </div>
+</div>
+
+
+<!-- MODAL PÉDAGOGUE / COMMUNAUTÉ -->
+<div id="id_mapPedagogue" class="w3-modal">
+  <div class="w3-modal-content w3-animate-top w3-card-4">
+    <header class="w3-container" style="background-color: #FFC63C;"> 
+      <span onclick="document.getElementById('id_mapPedagogue').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+      <h2>Pédagogie & communauté</h2>
+    </header>
+    <div class="w3-container">
+      <p id="pedagogueCount"></p>
+      <div id="pedagogueTab"></div>
+    </div>
+    <footer class="w3-container" style="background-color: #FFC63C;">
+      <p>Modal Footer</p>
+    </footer>
+  </div>
+</div>
+
+
+<style>
+  /* Juste pour un affichage un peu sympa */
+  #linuxTab div,
+  #dechetsTab div,
+  #nucleaireTab div,
+  #pedagogueTab div {
+    margin-top: 10px;
+  }
+</style>
+
+<!-- SCRIPT UNIQUE POUR LES 4 CAS -->
+<script>
+  // Fonction générique pour charger un fichier JSON d'“attempts”
+  function loadAttempts(jsonPath, countElementId, containerElementId) {
+    fetch(jsonPath)
+      .then(response => response.json())
+      .then(data => {
+        // 1) Combien de personnes ?
+        const nombrePersonnes = data.length;
+        console.log(jsonPath, '- Nombre de personnes :', nombrePersonnes);
+
+        const countEl = document.getElementById(countElementId);
+        const container = document.getElementById(containerElementId);
+
+        if (!countEl || !container) {
+          console.error('Élément introuvable pour', countElementId, containerElementId);
+          return;
+        }
+
+        // Affiche le nombre de personnes
+        countEl.textContent = `Nombre de personnes dans le fichier : ${nombrePersonnes}`;
+
+        // Vide le conteneur
+        container.innerHTML = '';
+
+        // 2) Boucle sur toutes les personnes
+        for (let i = 0; i < nombrePersonnes; i++) {
+          const person = data[i];
+
+          // Carte pour une personne
+          const bloc = document.createElement('div');
+          bloc.className = 'w3-card w3-padding w3-margin';
+
+          const nom = document.createElement('p');
+          nom.innerHTML = `<strong>Nom :</strong> ${person.personName}`;
+          bloc.appendChild(nom);
+
+          const bio = document.createElement('p');
+          bio.innerHTML = `<strong>Bio :</strong> ${person.personBio || ''}`;
+          bloc.appendChild(bio);
+
+          const island = document.createElement('p');
+          island.innerHTML = `<strong>Île :</strong> ${person.islandName}`;
+          bloc.appendChild(island);
+
+          const skillsTitle = document.createElement('p');
+          skillsTitle.innerHTML = '<strong>Compétences :</strong>';
+          bloc.appendChild(skillsTitle);
+
+          const ul = document.createElement('ul');
+          for (let j = 0; j < person.topSkills.length; j++) {
+            const li = document.createElement('li');
+            const skill = person.topSkills[j];
+            li.textContent = `${skill.id} (niveau ${skill.level})`;
+            ul.appendChild(li);
+          }
+          bloc.appendChild(ul);
+
+          container.appendChild(bloc);
+        }
+      })
+      .catch(error => {
+        console.error('Erreur lors du fetch de', jsonPath, ':', error);
+      });
+  }
+
+  // On lance les 4 fetch après chargement du DOM
+  document.addEventListener('DOMContentLoaded', () => {
+    loadAttempts(
+      'attempts_free_software_autonomy.json',
+      'linuxCount',
+      'linuxTab'
+    );
+
+    loadAttempts(
+      'attempts_hardware_reuse.json',
+      'dechetsCount',
+      'dechetsTab'
+    );
+
+    loadAttempts(
+      'attempts_digital_sobriety.json',
+      'nucleaireCount',
+      'nucleaireTab'
+    );
+
+    loadAttempts(
+      'attempts_education_community.json',
+      'pedagogueCount',
+      'pedagogueTab'
+    );
+  });
+</script>
+
 </body>
 </html>
-
-
