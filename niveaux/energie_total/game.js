@@ -98,7 +98,7 @@ ffunction endGame() {
     });
     
     nextButton.addEventListener('click', () => {
-        window.location.href = 'votre-page-suivante.html'; // Remplacez par l'URL de votre page
+        window.location.href = 'file:///home/l45/Documents/La-nuit-de-l-info/niveaux/sheesh/index.html'; // Remplacez par l'URL de votre page
     });
     
     document.body.appendChild(nextButton);
