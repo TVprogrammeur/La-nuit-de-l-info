@@ -65,7 +65,7 @@ function startTimer() {
     }, 1000);
 }
 
-ffunction endGame() {
+function endGame() {
     clearInterval(timerInterval);
     gameStarted = false;
     
