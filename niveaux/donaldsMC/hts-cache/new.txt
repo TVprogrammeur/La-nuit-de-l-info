@@ -1,3 +1,0 @@
-date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
-02:31:23	149/149	---MCZ	200	added ('OK')	text/plain	date:Fri,%2005%20Dec%202025%2001:28:03%20GMT	https://www.mcdonalds.fr/robots.txt		(from )
-02:31:23	598322/598322	---MCZ	200	added ('OK')	text/html	etag:%2292132-JrzfEjn3hXMsMZDxyUFa+VdANqY%22	https://www.mcdonalds.fr/	./niveaux/donaldsMC/www.mcdonalds.fr/index.html	(from )
