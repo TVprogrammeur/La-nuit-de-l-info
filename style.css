@@ -1,43 +1,39 @@
-
-
-
 body {
     font-family: Arial;
 }
 
 svg {
-    background-image: url("rogner_elec.png");
-    background-size: cover;
+    position: fixed;
+    right: 0;
+    background-image: url("rogner\ elec\ upscale.jpg");
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     border: 1px solid #000000;
+    width: 75vw;
+    height:80vh
 }
 
-.base-path {
-    stroke: #00ff00;
-    stroke-width: 5;
-    fill: none;
+rect {
+    fill: white;
 }
 
-.anim-path {
-    stroke: #ff0000;
-    stroke-width: 5;
-    stroke-linecap: round;
-    fill: none;
+#lampe1 {
+    position: fixed;
+    left: 0;
+    float: left;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+        width: 15vw;
 }
 
-.node {
-    fill: #00ff00;
-}
-
-.highlight {
-    fill: #ff5722;
-    transition: 0.3s;
-}
-
-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+#lampe2 {
+    position: fixed;
+    left: 0;
+    display: none;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 15vw;
 }

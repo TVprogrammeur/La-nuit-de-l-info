@@ -7,62 +7,609 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h2>Animation d’un chemin avec virages (SVG)</h2>
-        <!-- <img class="shema_complique" src="rogner_elec.png">  -->
-        <svg viewBox="0 0 887 829" src="rogner_elec.png">
+        <h2>machine de Rube Golberg énergétique</h2>
+        <p>on veut allumer cette lampe ci-dessus</p>
+        <img id="lampe1" src="ampoule-led-a60-culot-e27-10w-cons-75w-eq-cct-temperature-de-lumiere-variable-2700k-6000k.jpg" alt="">
+        <img id="lampe2" src="28722fr01.webp">
+   <svg
+   version="1.1"
+   id="svg1"
+   width="100%"
+   height="100%"
+   viewBox="0 0 1774 1658"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="g1">
+     
+    <rect
+       style="fill:#ffffff"
+       id="rect28"
+       width="491.79724"
+       height="280.13766"
+       x="139.0313"
+       y="1103.95" />
+    <rect
+       style="fill:#ffffff"
+       id="rect29"
+       width="78.853569"
+       height="70.553192"
+       x="622.52814"
+       y="1257.5068" />
+    <rect
+       style="fill:#ffffff"
+       id="rect30"
+       width="271.83731"
+       height="224.11014"
+       x="340.3154"
+       y="815.5119" />
+    <rect
+       style="fill:#ffffff;stroke-width:1.02268"
+       id="rect31"
+       width="49.802254"
+       height="236.5607"
+       x="338.2403"
+       y="471.0463" />
+    <rect
+       style="fill:#ffffff"
+       id="rect32"
+       width="51.877346"
+       height="47.727158"
+       x="342.3905"
+       y="786.46057" />
 
-            <!-- Chemin de fond (statique) avec virages -->
-            <!-- A -> virage 1 -> virage 2 -> C -->
-            <path id="base"
-                class="base-path"
-                d="M 50 150
-                    L 150 150
-                    L 200 80
-                    L 300 80
-                    L 350 80
-                    L 350 100
-                    L 10 10" />
-                <path id="base-div-1"
-                class="base-path"
-                d="M 50 150
-                    L 150 150
-                    L 200 80
-                    L 300 80
-                    L 350 80
-                    L 350 100
-                    L 10 10" />
 
-            <!-- Chemin animé, identique au fond -->
-            <path id="anim"
-                class="anim-path"
-                d="M 50 150
-                    L 150 150
-                    L 200 80
-                    L 300 80
-                    L 350 80
-                    L 350 100
-                    L 10 10" />
-            <!-- <path id="anim"
-                class="anim-path"
-                d="M 50 150
-                    L 150 150
-                    L 200 80
-                    L 300 80
-                    L 350 80
-                    L 350 100
-                    L 10 10" />         -->
+    <rect #EDF
+       style="fill:#FFFFFF"
+       class="EDF"
+       width="332.01501"
+       height="136.95619"
+       x="479.34668"
+       y="676.48059" />
+    <rect #RTE
+       style="fill:#FFFFFF"
+       class="RTE"
+       width="251.08636"
+       height="105.82979"
+       x="1037.5469"
+       y="900.59076" />
+    <rect # Enedis
+       style="fill:#ffffff"
+       class="Enedis"
+       width="437.84482"
+       height="114.13017"
+       x="944.16772"
+       y="1153.7522" />
+    <rect #40-fournisseurs
+       style="fill:#FFFFFF"
+       class="40-fournisseurs"
+       width="591.40173"
+       height="278.06259"
+       x="1106.025"
+       y="412.94366" />
+    <rect #actionnaires
+       style="fill:#FFFFFF"
+       class="actionnaires"
+       width="564.42554"
+       height="143.18147"
+       x="1014.7209"
+       y="107.90488" />
+    <rect #état
+       style="fill:#FFFFFF"
+       class="état"
+       width="361.06635"
+       height="224.11014"
+       x="253.16145"
+       y="74.703377" />
+    <rect #usager
+       style="fill:#FFFFFF"
+       class="usager"
+       width="502.17273"
+       height="124.50563"
+       x="309.189"
+       y="1384.0876" />
+    <rect #tarif libre
+       style="fill:#FFFFFF"
+       class="tarif-libre"
+       width="29.051313"
+       height="93.379227"
+       x="670.25531"
+       y="1510.6683" />
+    <rect #tarif libre
+       style="fill:#FFFFFF"
+       class="tarif-libre"
+       width="1027.1715"
+       height="93.379227"
+       x="699.30664"
+       y="1541.7948" />
+    <rect #tarif libre
+       style="fill:#FFFFFF;stroke-width:0.908727"
+       class="tarif-libre"
+       width="95.454315"
+       height="491.79724"
+       x="1664.2253"
+       y="1049.9974" />
+    <rect #tarif fixe
+       style="fill:#FFFFFF"
+       class="tarif-fixe"
+       width="217.88486"
+       height="83.003754"
+       x="93.379227"
+       y="1384.0876" />
+    <rect #tarif fixe
+       style="fill:#FFFFFF"
+       class="tarif-fixe"
+       width="72.628288"
+       height="460.67084"
+       x="66.403008"
+       y="921.34167" />
+    <ellipse #€-g
+       style="fill:#FFFFFF"
+       class="€-g"
+       cx="100.64205"
+       cy="880.87732"
+       rx="48.764706"
+       ry="46.689613" />
+    <ellipse #€-g
+       style="fill:#FFFFFF"
+       class="€-d"
+       cx="1709.8773"
+       cy="1000.1953"
+       rx="47.727158"
+       ry="53.952442" />
+    <rect #taxes-g
+       style="fill:#FFFFFF"
+       class="taxes-g"
+       width="49.802254"
+       height="664.03003"
+       x="78.853569"
+       y="168.0826" />
+    <rect #taxes-g
+       style="fill:#FFFFFF"
+       class="taxes-g"
+       width="126.58073"
+       height="124.50563"
+       x="126.58073"
+       y="166.00751" />
 
-            <!-- Nœuds -->
-            <circle id="A" cx="50" cy="150" r="7" class="node"/>
-            <circle id="B" cx="150" cy="150" r="7" class="node"/>
-            <circle id="C" cx="200" cy="80"  r="7" class="node"/>
-            <circle id="D" cx="300" cy="80"  r="7" class="node"/>
 
-            <circle id="E" cx="350" cy="100"  r="7" class="node"/>
+    <rect #taxes-d
+       style="fill:#FFFFFF"
+       class="taxes-d"
+       width="43.576973"
+       height="927.56696"
+       x="1691.2015"
+       y="26.976221" />
+    <rect #taxes-d
+       style="fill:#FFFFFF"
+       class="taxes-d"
+       width="890.21527"
+       height="74.703377"
+       x="800.98621"
+       y="26.976221" />
+    <rect #taxes-d
+       style="fill:#FFFFFF"
+       class="taxes-d"
+       width="207.50938"
+       height="64.327911"
+       x="618.37799"
+       y="93.379227" />
 
-        </svg>
 
-        <button id="startBtn">Lancer l’animation</button>
+    <rect #c-g-b
+       style="fill:#ffffff"
+       class="c-g-b"
+       width="136.95619"
+       height="85.07885"
+       x="139.0313"
+       y="836.26282" />
+    <rect #c-g-b
+       style="fill:#FFFFFF"
+       class="c-g-b"
+       width="51.877346"
+       height="120.35545"
+       x="232.41051"
+       y="722.13269" />
+    <rect #c-g-b
+       style="fill:#FFFFFF"
+       class="c-g-b"
+       width="211.65958"
+       height="72.628288"
+       x="278.06259"
+       y="709.68213" />
+    <rect #c-g-b
+       style="fill:#FFFFFF"
+       class="c-g-b"
+       width="43.576973"
+       height="178.45807"
+       x="242.78598"
+       y="915.11639" />
+    <rect #c-g-b
+       style="fill:#FFFFFF"
+       class="c-g-b"
+       width="529.14893"
+       height="64.327911"
+       x="278.06259"
+       y="1039.6221" />
+    <rect #c-g-b
+       style="fill:#ffffff"
+         class="c-g-b"
+       width="195.05882"
+       height="85.07885"
+       x="846.63831"
+       y="871.53943" />
+    <rect #c-g-b
+       style="fill:#ffffff"
+       class="c-g-b"
+       width="33.201504"
+       height="105.82979"
+       x="842.4881"
+       y="956.61829" />
+    <rect #c-g-b
+       style="fill:#ffffff"
+       class="c-g-b"
+       width="49.802254"
+       height="35.276596"
+       x="803.06134"
+       y="1052.0726" />
+
+
+
+    <rect #service-système-g
+       style="fill:#FFFFFF"
+       class="service-système-g"
+       width="80.928658"
+       height="232.41051"
+       x="628.75342"
+       y="809.28662" />
+    <rect #service-système-g
+       style="fill:#FFFFFF"
+       class="service-système-g"
+       width="56.027534"
+       height="182.60826"
+       x="649.50439"
+       y="1097.7246" />
+    <rect #service-système-g
+       style="fill:#FFFFFF"
+       class="service-système-g"
+       width="238.63579"
+       height="72.628288"
+       x="707.60699"
+       y="1216.005" />
+    <rect #service-système-g
+       style="fill:#FFFFFF"
+       class="service-système-g"
+       width="78.853569"
+       height="205.4343"
+       x="709.68213"
+       y="813.43677" />
+    <rect #service-système-g
+       style="fill:#FFFFFF"
+       class="service-système-g"
+       width="151.48186"
+       height="76.778473"
+       x="879.83978"
+       y="960.76843" />
+    <rect #service-système-g
+       style="fill:#FFFFFF"
+       class="service-système-g"
+       width="60.177723"
+       height="31.126408"
+       x="782.31036"
+       y="983.59448" />
+    <rect #service-système-g
+       style="fill:#FFFFFF"
+       class="service-système-g"
+       width="35.276596"
+       height="89.229034"
+       x="790.61078"
+       y="1097.7246" />
+    <rect #service-système-g
+       style="fill:#FFFFFF"
+       class="service-système-g"
+       width="116.20525"
+       height="70.553192"
+       x="825.88733"
+       y="1141.3016" />
+    <rect #service-système-g
+       style="fill:#ffffff"
+       class="service-système-g"
+       width="190.90863"
+       height="85.07885"
+       x="875.68964"
+       y="1039.6221" />
+
+
+       
+    <rect #subvention
+       style="fill:#FFFFFF"
+       class="subvention"
+       width="257.31165"
+       height="134.8811"
+       x="240.71089"
+       y="294.66333" />
+    
+
+       
+    <rect #c-d-b
+       style="fill:#ffffff"
+       class="c-d-b"
+       width="76.778473"
+       height="296.73843"
+       x="1614.423"
+       y="691.00629" />
+    <rect #c-d-b
+       style="fill:#FFFFFF"
+       class="c-d-b"
+       width="74.703377"
+       height="47.727158"
+       x="1595.7472"
+       y="985.66962" />
+    <rect #c-d-b
+       style="fill:#FFFFFF"
+       class="c-d-b"
+       width="35.276596"
+       height="249.01126"
+       x="1618.5732"
+       y="1029.2466" />
+    <rect #c-d-b
+       style="fill:#ffffff"
+       class="c-d-b"
+       width="240.71089"
+       height="74.703377"
+       x="1379.9374"
+       y="1220.1552" />
+    <rect #c-d-b
+       style="fill:#ffffff"
+       class="c-d-b"
+       width="246.93617"
+       height="72.628288"
+       x="1290.7084"
+       y="964.91864" />
+    <rect #c-d-b
+       style="fill:#ffffff"
+       class="c-d-b"
+       width="31.126408"
+       height="33.201504"
+       x="1533.4944"
+       y="987.74469" />
+
+
+    <rect #dividendes-g
+       style="fill:#FFFFFF"
+       class="dividendes-g"
+       width="24.901127"
+       height="275.98749"
+       x="668.18024"
+       y="400.4931" />
+    <rect #dividendes-g
+       style="fill:#FFFFFF"
+       class="dividendes-g"
+       width="390.11765"
+       height="174.30789"
+       x="717.98248"
+       y="255.23654" />
+    <rect #dividendes-g
+       style="fill:#FFFFFF"
+       class="dividendes-g"
+       width="31.126408"
+       height="35.276596"
+       x="693.08136"
+       y="398.41803" />
+    <rect #dividendes-g
+       style="fill:#FFFFFF"
+       class="dividendes-g"
+       width="149.40675"
+       height="97.529411"
+       x="610.07758"
+       y="159.78223" />
+
+
+    <rect #dividendes-d
+       style="fill:#FFFFFF"
+       class="dividendes-d"
+       width="358.99124"
+       height="159.78223"
+       x="1114.3254"
+       y="253.16145" />
+
+       
+    <rect #spéculation
+       style="fill:#FFFFFF"
+       class="spéculation"
+       width="234.48561"
+       height="141.10638"
+       x="1230.5306"
+       y="684.78101" />
+
+       
+    <rect #jaune
+       style="fill:#FFFFFF"
+       class="jaune"
+       width="284.28787"
+       height="114.13017"
+       x="815.5119"
+       y="724.20776" />
+    <rect #jaune
+       style="fill:#FFFFFF"
+       class="jaune"
+       width="93.379227"
+       height="83.003754"
+       x="1064.5232"
+       y="815.5119" />
+    <rect #jaune
+       style="fill:#FFFFFF"
+       class="jaune"
+       width="97.529411"
+       height="143.18147"
+       x="1116.4005"
+       y="1012.6458" />
+
+       
+
+
+    <rect #service-système-d
+       style="fill:#FFFFFF"
+       class="service-système-d"
+       width="232.41051"
+       height="74.703377"
+       x="1286.5582"
+       y="881.91492" />
+    <rect #service-système-d
+       style="fill:#FFFFFF"
+       class="service-système-d"
+       width="76.778473"
+       height="205.4343"
+       x="1462.9412"
+       y="688.93115" />
+    <rect #service-système-d
+       style="fill:#FFFFFF"
+       class="service-système-d"
+       width="76.778473"
+       height="296.73843"
+       x="1537.6445"
+       y="691.00629" />
+    <rect #service-système-d
+       style="fill:#FFFFFF"
+       class="service-système-d"
+       width="22.826033"
+       height="195.05882"
+       x="1570.8461"
+       y="983.59448" />
+    <rect #service-système-d
+       style="fill:#FFFFFF"
+       class="service-système-d"
+       width="195.05882"
+       height="87.153946"
+       x="1377.8623"
+       y="1126.776" />
+    <rect #service-système-d
+       style="fill:#FFFFFF"
+       class="service-système-d"
+       width="197.13391"
+       height="80.928658"
+       x="1255.4318"
+       y="1039.6221" />
+
+
+
+
+
+
+    <rect #lampe
+       style="fill:#FFFFFF"
+       class="lampe"
+       width="139.0313"
+       height="176.38298"
+       x="1058.2979"
+       y="1274.1077" />
+    <rect #lampe
+       style="fill:#FFFFFF"
+       class="lampe"
+       width="249.01126"
+       height="91.304131"
+       x="811.36169"
+       y="1404.8385" />
+
+
+    <rect #ARENH
+       style="fill:#ffffff"
+       class="ARENH"
+       width="402.56821"
+       height="174.30789"
+       x="707.60699"
+       y="508.39801" />
+
+
+    <rect #apport-capital
+       style="fill:#ffffff"
+       class="apport-capital"
+       width="205.4343"
+       height="95.454315"
+       x="508.39801"
+       y="298.81351" />
+    <rect #apport-capital
+       style="fill:#ffffff"
+       class="apport-capital"
+       width="33.201504"
+       height="58.102627"
+       x="597.62701"
+       y="394.26782" />
+    <rect #apport-capital
+       style="fill:#ffffff"
+       class="apport-capital"
+       width="37.351688"
+       height="122.43053"
+       x="593.47687"
+       y="473.1214" />
+    <rect #apport-capital
+       style="fill:#ffffff"
+       class="apport-capital"
+       width="85.07885"
+       height="91.304131"
+       x="572.72589"
+       y="587.25159" />
+
+
+    <rect #subvention
+       style="fill:#FFFFFF"
+       class="subvention"
+       width="400.4931"
+       height="80.928658"
+       x="701.38171"
+       y="429.54443" />
+    <rect #subvention
+       style="fill:#FFFFFF"
+       class="subvention"
+       width="246.93617"
+       height="66.403008"
+       x="342.3905"
+       y="427.46933" />
+    <rect #subvention
+       style="fill:#FFFFFF"
+       class="subvention"
+       width="209.58449"
+       height="93.379227"
+       x="383.89236"
+       y="489.72214" />
+    <rect #subvention
+       style="fill:#FFFFFF"
+       class="subvention"
+       width="93.379227"
+       height="93.379227"
+       x="473.1214"
+       y="583.10138" />
+    <rect #subvention
+       style="fill:#FFFFFF"
+       class="subvention"
+       width="72.628288"
+       height="29.051313"
+       x="589.32666"
+       y="450.29538" />
+
+
+    <rect #jaune-a
+       style="fill:#ffffff"
+       class="jaune-a"
+       width="39.426785"
+       height="128.65582"
+       x="1103.95"
+       y="686.85608" />
+    <rect #jaune-a
+       style="fill:#ffffff"
+       class="jaune-a"
+       width="39.426785"
+       height="207.50938"
+       x="1180.7284"
+       y="691.00629" />
+       
+
+       
+
+  </g>
+</svg>
     </body>
     <script src="script.js"></script>
 </html>
