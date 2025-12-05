@@ -27,7 +27,7 @@ function shoot(targetX, targetY, targetElement = null) {
     const angle = 90 + Math.atan2(dy, dx) * 180 / Math.PI; // angle en degrés
     ball.style.transform = `rotate(${angle}deg)`;
 
-    const speed = 10;
+    const speed = 20;
     let step = 0;
 
     function animate() {
@@ -59,7 +59,7 @@ document.addEventListener('click', (e) => {
     let targetElement = null;
 
     // Vérifie si le clic est sur une cible
-    if (target !== document.body && target !== player) {
+    if (target !== document.body && target !== document.footer) {
         targetElement = target;
     }
 
