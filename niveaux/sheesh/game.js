@@ -1,9 +1,12 @@
 const player = document.querySelector('.player');
 
+// Configuration
+const LEVEL = 2; // NIVEAU 2
+
 // Préparer les sons
-const shootSound = new Audio('piou-piou.mp3'); // son du tir
-const hitSound = new Audio('toucher-explosion_point.mp3');     // son quand on touche
-const missSound = new Audio('rater.mp3');   // son quand on rate
+const shootSound = new Audio('piou-piou.mp3');
+const hitSound = new Audio('toucher-explosion_point.mp3');
+const missSound = new Audio('rater.mp3');
 
 let gameStarted = false;
 let timeLeft = 30;
@@ -25,7 +28,7 @@ rulesPopup.style.cssText = `
     font-size: 18px;
 `;
 rulesPopup.innerHTML = `
-    <h2>RÈGLES DU JEU</h2>
+    <h2>RÈGLES DU JEU - NIVEAU 2</h2>
     <p>- Tir avec le clic gauche de la souris sur les éléments de la page</p>
     <p>- Tu as 30s pour faire le meilleur score</p>
     <p><strong>Clique n'importe où pour commencer !</strong></p>
@@ -53,9 +56,32 @@ function updateTimerDisplay() {
     timerDisplay.textContent = `⏱️ ${timeLeft}s`;
 }
 
+// Créer l'affichage du score
+const scoreDisplay = document.createElement('div');
+scoreDisplay.style.cssText = `
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 9999;
+    display: none;
+`;
+document.body.appendChild(scoreDisplay);
+
+function updateScoreDisplay() {
+    scoreDisplay.textContent = `🎯 Score: ${gameData.score}`;
+}
+
 function startTimer() {
     timerDisplay.style.display = 'block';
+    scoreDisplay.style.display = 'block'; // AJOUTE CETTE LIGNE
     updateTimerDisplay();
+    updateScoreDisplay(); // AJOUTE CETTE LIGNE
     timerInterval = setInterval(() => {
         timeLeft--;
         updateTimerDisplay();
@@ -65,13 +91,39 @@ function startTimer() {
     }, 1000);
 }
 
+function saveScore() {
+    // Récupérer les scores de la session
+    const level1Score = parseInt(sessionStorage.getItem('level1Score') || '0');
+    const level2Score = parseInt(sessionStorage.getItem('level2Score') || '0');
+    
+    // Récupérer toutes les parties précédentes
+    let allGames = JSON.parse(localStorage.getItem('allGames') || '[]');
+    
+    // Mettre à jour la dernière partie avec le score du niveau 2
+    if (allGames.length > 0) {
+        const lastGame = allGames[allGames.length - 1];
+        lastGame.level2 = level2Score;
+        lastGame.total = level1Score + level2Score;
+    }
+    
+    // Sauvegarder dans localStorage
+    localStorage.setItem('allGames', JSON.stringify(allGames));
+    
+    console.log('Score niveau 2 sauvegardé:', level2Score);
+    console.log('Total de la partie:', level1Score + level2Score);
+}
+
 function endGame() {
     clearInterval(timerInterval);
     gameStarted = false;
     
-    // Créer le bouton Next
+    // Sauvegarder le score du niveau 2
+    sessionStorage.setItem('level2Score', gameData.score);
+    saveScore();
+    
+    // Créer le bouton Next (vers leaderboard)
     const nextButton = document.createElement('button');
-    nextButton.textContent = 'NEXT ➔';
+    nextButton.textContent = 'VOIR LE CLASSEMENT 🏆';
     nextButton.style.cssText = `
         position: fixed;
         top: 50%;
@@ -86,7 +138,13 @@ function endGame() {
         border-radius: 10px;
         cursor: pointer;
         z-index: 10000;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        box-shif (targetElement) {
+                targetElement.remove();
+                hitSound.currentTime = 0;
+                hitSound.play();
+                gameData.score += 10;
+                console.log("Score :", gameData.score);
+            }adow: 0 4px 6px rgba(0,0,0,0.3);
     `;
     
     nextButton.addEventListener('mouseenter', () => {
@@ -98,26 +156,25 @@ function endGame() {
     });
     
     nextButton.addEventListener('click', () => {
-        window.location.href = '../sheesh/index.html'; // Remplacez par l'URL de votre page
+        // Nettoyer la session après avoir vu le leaderboard
+        sessionStorage.clear();
+        window.location.href = '../leaderboard.html';
     });
     
     document.body.appendChild(nextButton);
 }
-localStorage.removeItem("gameData");
 
 let gameData = { score: 0 };
 
 // Fonction pour tirer une balle vers une position ou un élément
 function shoot(targetX, targetY, targetElement = null) {
-    // Jouer le son de tir
-    shootSound.currentTime = 0; // pour pouvoir le rejouer rapidement
+    shootSound.currentTime = 0;
     shootSound.play();
 
     const ball = document.createElement('div');
     ball.classList.add('ball');
     document.body.appendChild(ball);
 
-    // Position initiale de la balle (au joueur)
     const startX = player.offsetLeft + player.offsetWidth / 2 - 60;
     const startY = player.offsetTop + player.offsetHeight / 2 - 70;
     ball.style.left = startX + 'px';
@@ -126,7 +183,7 @@ function shoot(targetX, targetY, targetElement = null) {
     const dx = targetX - startX;
     const dy = targetY - startY;
     const distance = Math.sqrt(dx*dx + dy*dy);
-    const angle = 90 + Math.atan2(dy, dx) * 180 / Math.PI; // angle en degrés
+    const angle = 90 + Math.atan2(dy, dx) * 180 / Math.PI;
     ball.style.transform = `rotate(${angle}deg)`;
 
     const speed = 10;
@@ -137,19 +194,17 @@ function shoot(targetX, targetY, targetElement = null) {
         const progress = step / distance;
         if (progress >= 1) {
             if (targetElement) {
-                targetElement.remove(); // supprime la cible
+                targetElement.remove();
                 hitSound.currentTime = 0;
-                hitSound.play(); // jouer son de touche
-                // Score +1
+                hitSound.play();
                 gameData.score += 10;
-                saveGame();
-
+                updateScoreDisplay(); // AJOUTE CETTE LIGNE
                 console.log("Score :", gameData.score);
             } else {
                 missSound.currentTime = 0;
-                missSound.play(); // jouer son de raté
+                missSound.play();
             }
-            ball.remove(); // supprime toujours la balle
+            ball.remove();
             return;
         }
         ball.style.left = startX + dx * progress + 'px';
@@ -160,26 +215,20 @@ function shoot(targetX, targetY, targetElement = null) {
     animate();
 }
 
-function saveGame() {
-    localStorage.setItem("gameData", JSON.stringify(gameData));
-}
-
 // Événement click sur toute la page
 document.addEventListener('click', (e) => {
-    // Premier clic : fermer la popup et démarrer le jeu
     if (!gameStarted) {
         rulesPopup.remove();
         gameStarted = true;
         startTimer();
     }
     
-    // Empêcher de tirer après la fin du jeu
     if (timeLeft <= 0) return;
     
     const target = e.target;
     let targetElement = null;
     
-    if (target !== document.body && target !== player && target !== timerDisplay) {
+    if (target !== document.body && target !== player && target !== timerDisplay && target !== scoreDisplay) {
         targetElement = target;
     }
     
