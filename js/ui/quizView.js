@@ -18,8 +18,11 @@ export function renderQuestion(container, { onNext }) {
     const savedChoice = getAnswerFor(question.id);
 
     container.innerHTML = `
+    <div class="progress">Question ${idx + 1} / ${total}</div>
     <div class="question-text">${question.text}</div>
-    <div class="question-hint">Choisis la réponse qui te ressemble le plus.</div>
+    <div class="question-hint">
+      Indique à quel point cette phrase te correspond (de 1 à 5).
+    </div>
     <div class="choices">
       ${question.choices
             .map(
@@ -54,6 +57,8 @@ export function renderQuestion(container, { onNext }) {
 
     const btn = container.querySelector(".btn-primary");
     const errorEl = container.querySelector("#quizError");
+    const firstChoice = container.querySelector(`input[name="${question.id}"]`);
+    if (firstChoice) firstChoice.focus();
 
     btn.addEventListener("click", () => {
         const selected = container.querySelector(
@@ -66,4 +71,11 @@ export function renderQuestion(container, { onNext }) {
         errorEl.textContent = "";
         onNext(question.id, selected.value);
     });
+
+    const keyHandler = (e) => {
+        if (e.key === "Enter") {
+            btn.click();
+        }
+    };
+    container.addEventListener("keydown", keyHandler);
 }

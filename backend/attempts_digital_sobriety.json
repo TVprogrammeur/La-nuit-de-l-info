@@ -1,0 +1,31 @@
+[
+  {
+    "id": "attempt_1764904306924",
+    "ip": "::ffff:127.0.0.1",
+    "personName": "t",
+    "personBio": "t",
+    "islandName": "Île de la Sobriété Numérique",
+    "mainIslandId": "digital_sobriety",
+    "topSkills": [
+      {
+        "id": "optimize_storage_bandwidth",
+        "label": "Optimiser stockage, sauvegardes, bande passante, streaming, etc.",
+        "level": 4,
+        "impactOnMainIsland": 3
+      },
+      {
+        "id": "reuse_old_devices",
+        "label": "Imaginer des réemplois de vieux appareils (PC, tablettes…) dans l’établissement",
+        "level": 4,
+        "impactOnMainIsland": 2
+      },
+      {
+        "id": "animate_workshops",
+        "label": "Animer / co-animer un atelier ou une séance de sensibilisation",
+        "level": 3,
+        "impactOnMainIsland": 0
+      }
+    ],
+    "createdAt": "2025-12-05T03:11:46.924Z"
+  }
+]

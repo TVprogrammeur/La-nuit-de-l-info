@@ -10,16 +10,74 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Fichier où on stocke les réponses
-const ATTEMPTS_FILE_PATH = path.join(__dirname, "attempts.json");
-console.log("[SERVER] Fichier de réponses :", ATTEMPTS_FILE_PATH);
+// Les IDs d’îles connues (doivent matcher quizData.js)
+const ISLAND_IDS = [
+    "hardware_reuse",
+    "free_software_autonomy",
+    "digital_sobriety",
+    "education_community"
+];
 
-// Middleware JSON
+// Helper : nom de fichier pour une île
+function getAttemptsFilePathForIsland(islandId) {
+    const safeId = islandId && ISLAND_IDS.includes(islandId)
+        ? islandId
+        : "unknown";
+    return path.join(__dirname, `attempts_${safeId}.json`);
+}
+
+// Lecture d’un fichier de tentatives
+function readAttemptsFromFile(filePath) {
+    try {
+        if (!fs.existsSync(filePath)) {
+            return [];
+        }
+        const raw = fs.readFileSync(filePath, "utf-8");
+        if (!raw.trim()) return [];
+        return JSON.parse(raw);
+    } catch (e) {
+        console.error("Erreur lecture fichier tentatives :", filePath, e);
+        return [];
+    }
+}
+
+// Écriture d’un fichier de tentatives
+function writeAttemptsToFile(filePath, attempts) {
+    try {
+        fs.writeFileSync(
+            filePath,
+            JSON.stringify(attempts, null, 2),
+            "utf-8"
+        );
+    } catch (e) {
+        console.error("Erreur écriture fichier tentatives :", filePath, e);
+    }
+}
+
+// Lire toutes les tentatives, toutes îles confondues
+function readAllAttempts() {
+    const attempts = [];
+
+    // Tous les fichiers attempts_<id>.json
+    const files = fs.readdirSync(__dirname).filter((f) =>
+        f.startsWith("attempts_") && f.endsWith(".json")
+    );
+
+    files.forEach((file) => {
+        const full = path.join(__dirname, file);
+        const fileAttempts = readAttemptsFromFile(full);
+        attempts.push(...fileAttempts);
+    });
+
+    return attempts;
+}
+
+// Middleware
 app.use(express.json());
 
 // CORS basique (frontend sur http://localhost:8000 par ex)
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*"); // à restreindre au besoin
+    res.header("Access-Control-Allow-Origin", "*");
     res.header(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept"
@@ -31,70 +89,29 @@ app.use((req, res, next) => {
     next();
 });
 
-// Lecture des tentatives depuis le fichier JSON
-function readAttempts() {
-    try {
-        if (!fs.existsSync(ATTEMPTS_FILE_PATH)) {
-            return [];
-        }
-        const raw = fs.readFileSync(ATTEMPTS_FILE_PATH, "utf-8");
-        if (!raw.trim()) return [];
-        return JSON.parse(raw);
-    } catch (err) {
-        console.error("[SERVER] Erreur lecture attempts.json :", err);
-        return [];
-    }
-}
-
-// Écriture des tentatives dans le fichier JSON
-function writeAttempts(attempts) {
-    try {
-        fs.writeFileSync(
-            ATTEMPTS_FILE_PATH,
-            JSON.stringify(attempts, null, 2),
-            "utf-8"
-        );
-    } catch (err) {
-        console.error("[SERVER] Erreur écriture attempts.json :", err);
-    }
-}
-
-// Enregistrement d'une nouvelle participation
 app.post("/api/attempts", (req, res) => {
     console.log("POST /api/attempts payload =", req.body);
 
-    const {
-        personName,
-        personBio,
-        mainIslandId,
-        islandName,
-        topSkills
-    } = req.body;
+    const { personName, personBio, mainIslandId, islandName, topSkills } = req.body;
 
-    // Validation minimale : au moins un nom
+    // Validation simple : au moins le nom
     if (!personName || typeof personName !== "string") {
-        return res
-            .status(400)
-            .json({ error: "personName manquant ou invalide" });
+        return res.status(400).json({ error: "personName manquant ou invalide" });
     }
 
-    const ip =
-        req.ip ||
-        req.headers["x-forwarded-for"] ||
-        "unknown";
+    // Fichier ciblé pour cette île
+    const filePath = getAttemptsFilePathForIsland(mainIslandId);
+    console.log("[SERVER] Fichier utilisé pour cette tentative :", filePath);
 
-    const attempts = readAttempts();
+    const ip = req.ip || req.headers["x-forwarded-for"] || "unknown";
+    const attempts = readAttemptsFromFile(filePath);
 
-    // En production, on pourrait garder le blocage par IP.
-    // Ici on le laisse actif pour éviter les doublons basiques.
+    // Bloquer plusieurs entrées par IP pour CETTE île
     const already = attempts.find((a) => a.ip === ip);
     if (already) {
         return res
             .status(409)
-            .json({
-                error:
-                    "Une participation a déjà été enregistrée depuis cette adresse."
-            });
+            .json({ error: "Une participation a déjà été enregistrée depuis cette adresse pour cette île." });
     }
 
     const attempt = {
@@ -109,22 +126,31 @@ app.post("/api/attempts", (req, res) => {
     };
 
     attempts.push(attempt);
-    writeAttempts(attempts);
+    writeAttemptsToFile(filePath, attempts);
 
-    return res
-        .status(201)
-        .json({ status: "ok", attemptId: attempt.id });
+    res.status(201).json({ status: "ok", attemptId: attempt.id });
 });
 
-// GET /api/attempts : récupérer toutes les tentatives brutes
+// GET /api/attempts :
+// - si ?islandId=xxx → renvoie uniquement ce JSON
+// - sinon → merge tous les JSON
 app.get("/api/attempts", (req, res) => {
-    const attempts = readAttempts();
+    const { islandId } = req.query;
+
+    if (islandId) {
+        const filePath = getAttemptsFilePathForIsland(islandId);
+        const attempts = readAttemptsFromFile(filePath);
+        return res.json(attempts);
+    }
+
+    // Toutes les îles
+    const attempts = readAllAttempts();
     res.json(attempts);
 });
 
-// GET /api/stats : stats par île principale
+// GET /api/stats : stats par île, toutes îles confondues
 app.get("/api/stats", (req, res) => {
-    const attempts = readAttempts();
+    const attempts = readAllAttempts();
     const stats = {};
 
     attempts.forEach((a) => {
@@ -136,7 +162,5 @@ app.get("/api/stats", (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(
-        `Backend Village Techno en écoute sur http://localhost:${PORT}`
-    );
+    console.log(`Backend Village Techno en écoute sur http://localhost:${PORT}`);
 });
