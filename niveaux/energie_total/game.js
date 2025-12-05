@@ -65,10 +65,43 @@ function startTimer() {
     }, 1000);
 }
 
-function endGame() {
+ffunction endGame() {
     clearInterval(timerInterval);
     gameStarted = false;
-    alert(`⏰ Temps écoulé !`);
+    
+    // Créer le bouton Next
+    const nextButton = document.createElement('button');
+    nextButton.textContent = 'NEXT ➔';
+    nextButton.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #4CAF50;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        padding: 20px 40px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        z-index: 10000;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    `;
+    
+    nextButton.addEventListener('mouseenter', () => {
+        nextButton.style.background = '#45a049';
+    });
+    
+    nextButton.addEventListener('mouseleave', () => {
+        nextButton.style.background = '#4CAF50';
+    });
+    
+    nextButton.addEventListener('click', () => {
+        window.location.href = 'votre-page-suivante.html'; // Remplacez par l'URL de votre page
+    });
+    
+    document.body.appendChild(nextButton);
 }
 
 // Fonction pour tirer une balle vers une position ou un élément
