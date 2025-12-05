@@ -59,7 +59,7 @@ document.addEventListener('click', (e) => {
     let targetElement = null;
 
     // Vérifie si le clic est sur une cible
-    if (target !== document.body && target !== document.footer) {
+    if (target !== document.body && target !== document.footer && target !== player) {
         targetElement = target;
     }
 
