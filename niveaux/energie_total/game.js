@@ -6,7 +6,7 @@ const hitSound = new Audio('toucher-explosion_point.mp3');     // son quand on t
 const missSound = new Audio('rater.mp3');   // son quand on rate
 
 let gameStarted = false;
-let timeLeft = 60;
+let timeLeft = 30;
 let timerInterval = null;
 
 // Créer la popup des règles
@@ -27,7 +27,7 @@ rulesPopup.style.cssText = `
 rulesPopup.innerHTML = `
     <h2>RÈGLES DU JEU</h2>
     <p>- Tir avec le clic gauche de la souris sur les éléments de la page</p>
-    <p>- Tu as 60s pour faire le meilleur score</p>
+    <p>- Tu as 30s pour faire le meilleur score</p>
     <p><strong>Clique n'importe où pour commencer !</strong></p>
 `;
 document.body.appendChild(rulesPopup);
