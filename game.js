@@ -5,6 +5,72 @@ const shootSound = new Audio('piou-piou.mp3'); // son du tir
 const hitSound = new Audio('toucher-explosion_point.mp3');     // son quand on touche
 const missSound = new Audio('rater.mp3');   // son quand on rate
 
+let gameStarted = false;
+let timeLeft = 60;
+let timerInterval = null;
+
+// Créer la popup des règles
+const rulesPopup = document.createElement('div');
+rulesPopup.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    z-index: 10000;
+    text-align: center;
+    font-size: 18px;
+`;
+rulesPopup.innerHTML = `
+    <h2>RÈGLES DU JEU</h2>
+    <p>- Tir avec le clic gauche de la souris sur les éléments de la page</p>
+    <p>- Tu as 60s pour faire le meilleur score</p>
+    <p><strong>Clique n'importe où pour commencer !</strong></p>
+`;
+document.body.appendChild(rulesPopup);
+
+// Créer l'affichage du timer
+const timerDisplay = document.createElement('div');
+timerDisplay.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 9999;
+    display: none;
+`;
+document.body.appendChild(timerDisplay);
+
+function updateTimerDisplay() {
+    timerDisplay.textContent = `⏱️ ${timeLeft}s`;
+}
+
+function startTimer() {
+    timerDisplay.style.display = 'block';
+    updateTimerDisplay();
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        if (timeLeft <= 0) {
+            endGame();
+        }
+    }, 1000);
+}
+
+function endGame() {
+    clearInterval(timerInterval);
+    gameStarted = false;
+    alert(`⏰ Temps écoulé !`);
+}
+
 // Fonction pour tirer une balle vers une position ou un élément
 function shoot(targetX, targetY, targetElement = null) {
     // Jouer le son de tir
@@ -55,16 +121,25 @@ function shoot(targetX, targetY, targetElement = null) {
 
 // Événement click sur toute la page
 document.addEventListener('click', (e) => {
+    // Premier clic : fermer la popup et démarrer le jeu
+    if (!gameStarted) {
+        rulesPopup.remove();
+        gameStarted = true;
+        startTimer();
+    }
+    
+    // Empêcher de tirer après la fin du jeu
+    if (timeLeft <= 0) return;
+    
     const target = e.target;
     let targetElement = null;
-
-    // Vérifie si le clic est sur une cible
-    if (target !== document.body && target !== player) {
+    
+    if (target !== document.body && target !== player && target !== timerDisplay) {
         targetElement = target;
     }
-
+    
     const targetX = e.clientX - 10 + window.scrollX;
     const targetY = e.clientY - 10 + window.scrollY;
-
+    
     shoot(targetX, targetY, targetElement);
 });
