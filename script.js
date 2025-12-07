@@ -23,7 +23,7 @@ function path(nb_chemin) {
         }
         setTimeout(() => {
             document.getElementById("lampe1").style.display = "none"
-            document.getElementById("lampe2").style.display = "block"*
+            document.getElementById("lampe2").style.display = "block"
             alert("bravo la lampe est alumé")
         }, (chemin2.length+2)*500);
     }
